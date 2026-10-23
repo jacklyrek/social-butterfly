@@ -1,6 +1,6 @@
 // Network-first for the app shell so updates show up right away,
 // with the cache as an offline fallback. Firebase requests are left alone.
-const CACHE = "social-butterfly-v1";
+const CACHE = "social-butterfly-v2";
 const SHELL = [
   "./",
   "index.html",
@@ -31,7 +31,8 @@ self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET" || url.origin !== location.origin) return;
 
   event.respondWith(
-    fetch(event.request)
+    // "no-cache" revalidates with the server, skipping GitHub Pages' 10-minute HTTP cache.
+    fetch(event.request, { cache: "no-cache" })
       .then((res) => {
         const copy = res.clone();
         caches.open(CACHE).then((c) => c.put(event.request, copy));
