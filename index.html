@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Social Butterfly</title>
+  <meta name="description" content="Shared pools of questions and ideas for when conversation runs dry.">
+  <meta name="theme-color" content="#7c5cff">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <button id="back" class="icon-btn" hidden aria-label="Back">←</button>
+    <h1 id="title">🦋 Social Butterfly</h1>
+    <button id="name-btn" class="chip" aria-label="Change your name"></button>
+  </header>
+
+  <div id="banner" class="banner" hidden></div>
+
+  <main>
+    <!-- Home: list of pools -->
+    <section id="home-view">
+      <ul id="pool-list" class="pool-list"></ul>
+      <form id="new-pool-form" class="row">
+        <input id="new-pool-emoji" class="emoji-input" maxlength="2" placeholder="✨" aria-label="Emoji">
+        <input id="new-pool-name" placeholder="New pool name…" maxlength="40" required>
+        <button type="submit">Add</button>
+      </form>
+    </section>
+
+    <!-- Pool detail -->
+    <section id="pool-view" hidden>
+      <div id="card" class="card empty">
+        <p id="card-text">Tap draw to pull something from the pool.</p>
+        <p id="card-by" class="by"></p>
+      </div>
+      <div class="row">
+        <button id="draw-btn" class="big">🎲 Draw</button>
+      </div>
+      <p id="pool-stats" class="muted center"></p>
+
+      <form id="entry-form" class="stack">
+        <textarea id="entry-text" rows="2" maxlength="280" placeholder="Add a submission…" required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+
+      <details class="entries">
+        <summary>See all submissions</summary>
+        <ul id="entry-list"></ul>
+        <div class="row">
+          <button id="reshuffle-btn" class="ghost">↺ Put everything back in the pool</button>
+          <button id="delete-pool-btn" class="ghost danger">Delete pool</button>
+        </div>
+      </details>
+    </section>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
